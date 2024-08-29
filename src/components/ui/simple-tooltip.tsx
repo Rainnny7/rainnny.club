@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from "react";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { SIDE_OPTIONS } from "@radix-ui/react-popper";
 
@@ -10,20 +10,20 @@ import { SIDE_OPTIONS } from "@radix-ui/react-popper";
  * The props for a simple tooltip.
  */
 type SimpleTooltipProps = {
-	/**
-	 * The content to display in the tooltip.
-	 */
-	content: string | ReactElement;
+    /**
+     * The content to display in the tooltip.
+     */
+    content: string | ReactElement;
 
-	/**
-	 * The side to display the tooltip on.
-	 */
-	side?: (typeof SIDE_OPTIONS)[number];
+    /**
+     * The side to display the tooltip on.
+     */
+    side?: (typeof SIDE_OPTIONS)[number];
 
-	/**
-	 * The children to render in this tooltip.
-	 */
-	children: ReactNode;
+    /**
+     * The children to render in this tooltip.
+     */
+    children: ReactNode;
 };
 
 /**
@@ -33,13 +33,13 @@ type SimpleTooltipProps = {
  * @return the tooltip jsx
  */
 const SimpleTooltip = ({
-	content,
-	side,
-	children,
+    content,
+    side,
+    children,
 }: SimpleTooltipProps): ReactElement => (
-	<Tooltip>
-		<TooltipTrigger asChild>{children}</TooltipTrigger>
-		<TooltipContent side={side}>{content}</TooltipContent>
-	</Tooltip>
+    <Tooltip>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipContent side={side}>{content}</TooltipContent>
+    </Tooltip>
 );
 export default SimpleTooltip;

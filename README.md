@@ -2,6 +2,6 @@
 My personal portfolio website hosted [here](https://rainnny.club)
 
 ## TODO
-- [ ] Mobile Responsiveness
+- [x] Mobile Responsiveness
 - [ ] Discord Integration (Status, Activity, etc)
 - [ ] Add Configuration
