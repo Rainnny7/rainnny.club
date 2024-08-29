@@ -1,16 +1,14 @@
-import type {Config} from "tailwindcss"
+import type { Config } from "tailwindcss";
 
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
     darkMode: ["class"],
-    content: [
-        "./src/**/*.{ts,tsx}",
-    ],
+    content: ["./src/**/*.{ts,tsx}"],
     prefix: "",
     theme: {
         screens: {
-            'xs': '475px',
+            xs: "475px",
             ...defaultTheme.screens,
         },
         container: {
@@ -63,12 +61,12 @@ const config = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: {height: "0"},
-                    to: {height: "var(--radix-accordion-content-height)"},
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
                 },
                 "accordion-up": {
-                    from: {height: "var(--radix-accordion-content-height)"},
-                    to: {height: "0"},
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
                 },
             },
             animation: {
@@ -78,6 +76,6 @@ const config = {
         },
     },
     plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

@@ -33,7 +33,7 @@ const Navbar = (): ReactElement => (
 
 const Branding = (): ReactElement => (
     <Link
-        className="flex gap-3 items-center hover:opacity-75 cursor-default transition-all transform-gpu"
+        className="flex gap-3 items-center hover:opacity-75 cursor-default select-none transition-all transform-gpu"
         href="/"
     >
         <Image
@@ -68,7 +68,10 @@ const Links = (): ReactElement => (
                     passHref
                 >
                     <NavigationMenuLink
-                        className={cn(navigationMenuTriggerStyle(), "gap-2")}
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            "gap-2 select-none"
+                        )}
                         target="_blank"
                     >
                         <span className="hidden sm:flex">Buy me a Coffee</span>
@@ -86,7 +89,7 @@ const Links = (): ReactElement => (
 );
 
 const UsefulLinksContent = (): ReactElement => (
-    <div className="p-3 flex gap-5">
+    <div className="w-[15.5rem] p-3 flex flex-wrap gap-5">
         {/* Git */}
         <Link href="https://git.rainnny.club" target="_blank">
             <Button className="gap-3 cursor-default" variant="ghost">

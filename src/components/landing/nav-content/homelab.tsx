@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 const HomelabContent = (): ReactElement => (
-    <ul>
+    <ul className="text-sm sm:text-base pointer-events-none">
         <li>
             <b>Server Rack:</b> 22U, 32&quot; Depth
         </li>

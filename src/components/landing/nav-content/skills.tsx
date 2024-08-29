@@ -2,12 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactElement } from "react";
 import SimpleTooltip from "@/components/ui/simple-tooltip";
-
-type Skill = {
-    name: string;
-    icon: string;
-    link: string;
-};
+import Skill from "@/types/skill";
 
 const skillset: Skill[] = [
     // Languages
@@ -132,6 +127,7 @@ const Skills = (): ReactElement => (
             >
                 <SimpleTooltip content={skill.name}>
                     <Image
+                        className="select-none"
                         src={skill.icon}
                         alt={`${skill.name} Skill Logo`}
                         width={36}

@@ -5,10 +5,17 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
+				hostname: "cdn.rainnny.club",
+			},
+			{
+				protocol: "https",
+				hostname: "bonfire.wtf",
+			},
+			{
+				protocol: "https",
 				hostname: "img.icons8.com",
 			},
 		],
 	},
 };
-
 export default nextConfig;

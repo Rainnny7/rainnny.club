@@ -12,14 +12,9 @@ import BlurFade from "@/components/ui/blur-fade";
 import HomelabContent from "./nav-content/homelab";
 import Skills from "./nav-content/skills";
 import MyWork from "./nav-content/my-work";
+import NavigationItem from "@/types/navigation";
 
-type Item = {
-    name: string;
-    icon: ReactElement;
-    content: ReactElement;
-};
-
-const items: Item[] = [
+const items: NavigationItem[] = [
     {
         name: "My Work",
         icon: <BriefcaseIcon width={22} height={22} />,
@@ -38,7 +33,9 @@ const items: Item[] = [
 ];
 
 const Navigation = (): ReactElement => {
-    const [selected, setSelected] = useState<Item | undefined>(undefined);
+    const [selected, setSelected] = useState<NavigationItem | undefined>(
+        undefined
+    );
     return (
         <div className="flex flex-col">
             {/* Selection Buttons */}
@@ -54,9 +51,7 @@ const Navigation = (): ReactElement => {
                                 )}
                                 variant="ghost"
                                 onClick={() =>
-                                    active
-                                        ? setSelected(undefined)
-                                        : setSelected(item)
+                                    setSelected(active ? undefined : item)
                                 }
                             >
                                 {item.icon}
@@ -70,7 +65,7 @@ const Navigation = (): ReactElement => {
             {/* Selected Content */}
             {selected && (
                 <BlurFade key={selected.name} delay={0.05} inView>
-                    <div className="mt-5">{selected.content}</div>
+                    <div className="mt-7">{selected.content}</div>
                 </BlurFade>
             )}
         </div>
