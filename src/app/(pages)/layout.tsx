@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "../globals.css";
 import { ReactElement } from "react";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ const RootLayout = ({
 				enableSystem
 				disableTransitionOnChange
 			>
-				{children}
+				<TooltipProvider>{children}</TooltipProvider>
 			</ThemeProvider>
 		</body>
 	</html>
