@@ -22,8 +22,8 @@ import {
 import BlurFade from "@/components/ui/blur-fade";
 
 const Navbar = (): ReactElement => (
-    <BlurFade className="pt-1" delay={1.35} inView>
-        <nav className="px-3 xs:px-7 py-4 flex gap-3 xs:gap-10 sm:gap-14 justify-center items-center border-b transition-all transform-gpu">
+    <BlurFade className="pt-1 z-50" delay={1.35} inView>
+        <nav className="px-3 xs:px-7 py-4 flex gap-3 xs:gap-10 sm:gap-14 justify-center items-center bg-background border-b transition-all transform-gpu">
             <Branding />
             <Links />
             <ThemeSwitcher />
@@ -110,7 +110,7 @@ const UsefulLinksContent = (): ReactElement => (
         <Link href="https://status.rainnny.club" target="_blank">
             <Button className="gap-3 cursor-default" variant="ghost">
                 <SignalIcon width={24} height={24} />
-                <span>Service Status</span>
+                <span>Status</span>
             </Button>
         </Link>
     </div>

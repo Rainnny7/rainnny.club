@@ -7,6 +7,7 @@ import { UseThemeProps } from "next-themes/dist/types";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Project from "@/types/project";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 
 const projects: Project[] = [
@@ -64,51 +65,60 @@ const projects: Project[] = [
 const MyWork = (): ReactElement => {
     const { theme }: UseThemeProps = useTheme();
     return (
-        <div className="max-w-[55rem] flex flex-wrap gap-3 justify-center">
-            {projects.map((project, index) => (
-                <Link key={index} href={project.link || "#"} target="_blank">
-                    <MagicCard
-                        className="w-[25rem] p-2.5 cursor-default opacity-95"
-                        gradientColor={theme === "dark" ? "#262626" : "#D9D9D9"}
+        <ScrollArea className="h-[17.75rem]">
+            <div className="max-w-[55rem] flex flex-wrap gap-3 justify-center">
+                {projects.map((project, index) => (
+                    <Link
+                        key={index}
+                        href={project.link || "#"}
+                        target="_blank"
                     >
-                        {/* Icon, Name & Years Active */}
-                        <div className="flex gap-2.5 items-center">
-                            <Image
-                                className="rounded-full"
-                                src={project.icon}
-                                alt={`The ${project.name} Project Icon`}
-                                width={24}
-                                height={24}
-                            />
-
-                            <h1 className="font-semibold select-none pointer-events-none">
-                                {project.name}
-                            </h1>
-                            <div className="flex gap-1">
-                                <span className="text-green-400/80">
-                                    {project.startDate.format("MMM YYYY")}
-                                </span>
-                                -
-                                {project.endDate ? (
-                                    <span className="text-red-400/80">
-                                        {project.endDate.format("MMM YYYY")}
-                                    </span>
-                                ) : (
+                        <MagicCard
+                            className="w-[15rem] lg:w-[25rem] p-3.5 cursor-default opacity-95"
+                            gradientColor={
+                                theme === "dark" ? "#262626" : "#D9D9D9"
+                            }
+                        >
+                            {/* Icon, Name & Years Active */}
+                            <div className="flex flex-col lg:flex-row gap-0 md:gap-3 justify-center lg:justify-start lg:items-center">
+                                <div className="flex gap-3">
+                                    <Image
+                                        className="rounded-full"
+                                        src={project.icon}
+                                        alt={`The ${project.name} Project Icon`}
+                                        width={24}
+                                        height={24}
+                                    />
+                                    <h1 className="font-semibold select-none pointer-events-none">
+                                        {project.name}
+                                    </h1>
+                                </div>
+                                <div className="flex gap-1 text-sm">
                                     <span className="text-green-400/80">
-                                        Present
+                                        {project.startDate.format("MMM YYYY")}
                                     </span>
-                                )}
+                                    🞄
+                                    {project.endDate ? (
+                                        <span className="text-red-400/80">
+                                            {project.endDate.format("MMM YYYY")}
+                                        </span>
+                                    ) : (
+                                        <span className="text-green-400/80">
+                                            Present
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Description */}
-                        <p className="mt-2.5 line-clamp-3 text-black dark:!text-transparent bg-clip-text bg-gradient-to-br from-zinc-300/80 to-white">
-                            {project.description}
-                        </p>
-                    </MagicCard>
-                </Link>
-            ))}
-        </div>
+                            {/* Description */}
+                            <p className="mt-2.5 line-clamp-3 text-black dark:!text-transparent bg-clip-text bg-gradient-to-br from-zinc-300/80 to-white">
+                                {project.description}
+                            </p>
+                        </MagicCard>
+                    </Link>
+                ))}
+            </div>
+        </ScrollArea>
     );
 };
 export default MyWork;
