@@ -64,7 +64,12 @@ const Navigation = (): ReactElement => {
 
             {/* Selected Content */}
             {selected && (
-                <BlurFade key={selected.name} delay={0.05} inView>
+                <BlurFade
+                    key={selected.name}
+                    className="flex justify-center"
+                    delay={0.05}
+                    inView
+                >
                     <div className="mt-5">{selected.content}</div>
                 </BlurFade>
             )}

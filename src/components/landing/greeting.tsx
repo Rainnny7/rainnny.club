@@ -6,12 +6,12 @@ import moment, { Moment } from "moment";
 import Image from "next/image";
 import { ReactElement } from "react";
 import { FlipWords } from "@/components/ui/flip-words";
-import Navigation from "./navigation";
 
 const Greeting = (): ReactElement => {
     const now: Moment = moment(Date.now());
     return (
         <section className="flex flex-col gap-5 items-center">
+            {/* Picture */}
             <BlurFade delay={0.3} inView>
                 <Image
                     className="shadow-2xl shadow-blue-500 rounded-full scale-90 sm:scale-100 select-none pointer-events-none transition-all transform-gpu"
@@ -22,6 +22,7 @@ const Greeting = (): ReactElement => {
                 />
             </BlurFade>
 
+            {/* Intro */}
             <BlurFade delay={0.6} inView>
                 <h1
                     className={cn(
@@ -52,14 +53,10 @@ const Greeting = (): ReactElement => {
                         "text-black dark:!text-transparent bg-clip-text bg-gradient-to-br from-zinc-300/85 to-white"
                     )}
                     words={[
-                        `A ${now.diff(moment([2002, 10, 13]), "years")} year old${" "}
+                        `A ${now.diff(moment([2002, 10, 13]), "years")} year old 
 			passionate software engineer living in Canada with ${moment([2016, 8, 1]).fromNow(true)} of experience!`,
                     ]}
                 />
-            </BlurFade>
-
-            <BlurFade className="mt-3.5" delay={1.25} inView>
-                <Navigation />
             </BlurFade>
         </section>
     );

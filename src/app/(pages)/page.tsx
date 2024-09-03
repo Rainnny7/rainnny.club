@@ -1,6 +1,9 @@
 import Greeting from "@/components/landing/greeting";
 import Navbar from "@/components/landing/navbar";
 import { ReactElement } from "react";
+import Navigation from "@/components/landing/navigation";
+import BlurFade from "@/components/ui/blur-fade";
+import DiscordStatus from "@/components/landing/discord-status";
 
 const LandingPage = (): ReactElement => (
     <main className="h-screen flex flex-col">
@@ -13,6 +16,10 @@ const LandingPage = (): ReactElement => (
             }}
         >
             <Greeting />
+            <BlurFade className="my-7" delay={1.25} inView>
+                <Navigation />
+            </BlurFade>
+            <DiscordStatus />
         </div>
     </main>
 );
