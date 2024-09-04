@@ -9,6 +9,7 @@ import { ReactElement } from "react";
 import Project from "@/types/project";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
+import { truncateText } from "@/lib/utils";
 
 const projects: Project[] = [
     {
@@ -111,8 +112,8 @@ const MyWork = (): ReactElement => {
                             </div>
 
                             {/* Description */}
-                            <p className="mt-2.5 line-clamp-3 text-black dark:!text-transparent bg-clip-text bg-gradient-to-br from-zinc-300/80 to-white">
-                                {project.description}
+                            <p className="mt-2.5 text-black dark:!text-transparent bg-clip-text bg-gradient-to-br from-zinc-300/80 to-white">
+                                {truncateText(project.description, 136)}
                             </p>
                         </MagicCard>
                     </Link>

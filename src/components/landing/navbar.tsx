@@ -23,7 +23,7 @@ import BlurFade from "@/components/ui/blur-fade";
 
 const Navbar = (): ReactElement => (
     <BlurFade className="pt-1 z-50" delay={1.35} inView>
-        <nav className="px-3 xs:px-7 py-4 flex gap-3 xs:gap-10 sm:gap-14 justify-center items-center bg-background border-b transition-all transform-gpu">
+        <nav className="px-3 xs:px-7 py-3 flex gap-3 xs:gap-10 sm:gap-14 justify-center items-center bg-background border-b transition-all transform-gpu">
             <Branding />
             <Links />
             <ThemeSwitcher />

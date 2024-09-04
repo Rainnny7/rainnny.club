@@ -13,6 +13,7 @@ import HomelabContent from "./nav-content/homelab";
 import Skills from "./nav-content/skills";
 import MyWork from "./nav-content/my-work";
 import NavigationItem from "@/types/navigation";
+import DiscordStatus from "@/components/landing/discord-status";
 
 const items: NavigationItem[] = [
     {
@@ -63,16 +64,20 @@ const Navigation = (): ReactElement => {
             </div>
 
             {/* Selected Content */}
-            {selected && (
-                <BlurFade
-                    key={selected.name}
-                    className="flex justify-center"
-                    delay={0.05}
-                    inView
-                >
-                    <div className="mt-5">{selected.content}</div>
-                </BlurFade>
-            )}
+            <BlurFade className="mt-5" delay={1.85} inView>
+                {selected ? (
+                    <BlurFade
+                        key={selected.name}
+                        className="flex justify-center"
+                        delay={0.05}
+                        inView
+                    >
+                        {selected.content}
+                    </BlurFade>
+                ) : (
+                    <DiscordStatus />
+                )}
+            </BlurFade>
         </div>
     );
 };

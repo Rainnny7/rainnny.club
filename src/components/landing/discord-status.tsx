@@ -11,9 +11,10 @@ import {
 import DCDNUser from "@/types/dcdn";
 import axios from "axios";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, truncateText } from "@/lib/utils";
 import moment from "moment";
 import { PuzzlePieceIcon } from "@heroicons/react/24/outline";
+import SimpleTooltip from "@/components/ui/simple-tooltip";
 
 const statusColors = {
     online: "bg-green-500",
@@ -25,15 +26,26 @@ const statusColors = {
 const userBadges = {
     // Nitro
     "https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png":
-        (dcdnUser: DCDNUser) => dcdnUser.premiumType,
+        {
+            name: "Nitro Subscriber",
+            predicate: (dcdnUser: DCDNUser) => dcdnUser.premiumType,
+        },
 
     // Early Supporter
     "https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png":
-        (dcdnUser: DCDNUser) => (dcdnUser.flags & (1 << 9)) === 1 << 9,
+        {
+            name: "Early Supporter",
+            predicate: (dcdnUser: DCDNUser) =>
+                (dcdnUser.flags & (1 << 9)) === 1 << 9,
+        },
 
     // Active Developer
     "https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png":
-        (dcdnUser: DCDNUser) => (dcdnUser.flags & (1 << 22)) === 1 << 22,
+        {
+            name: "Active Developer",
+            predicate: (dcdnUser: DCDNUser) =>
+                (dcdnUser.flags & (1 << 22)) === 1 << 22,
+        },
 };
 
 const DiscordStatus = (): ReactElement | undefined => {
@@ -141,21 +153,24 @@ const BannerAvatar = ({
 );
 
 const Bio = ({ dcdnUser }: { dcdnUser: DCDNUser }): ReactElement => (
-    <div className="p-2 bg-zinc-950/65 text-sm rounded-xl">{dcdnUser.bio}</div>
+    <div className="p-2 bg-zinc-950/65 text-sm rounded-xl">
+        {truncateText(dcdnUser.bio, 15)}
+    </div>
 );
 
 const Badges = ({ dcdnUser }: { dcdnUser: DCDNUser }): ReactElement => (
     <div className="ml-auto flex gap-1">
         {Object.entries(userBadges)
-            .filter(([_, predicate]) => predicate(dcdnUser))
-            .map(([badge], index) => (
-                <Image
-                    key={index}
-                    src={badge}
-                    alt="Discord Profile Badge"
-                    width={22}
-                    height={22}
-                />
+            .filter(([_, badge]) => badge.predicate(dcdnUser))
+            .map(([badgeIcon, badge], index) => (
+                <SimpleTooltip key={index} content={badge.name}>
+                    <Image
+                        src={badgeIcon}
+                        alt="Discord Profile Badge"
+                        width={22}
+                        height={22}
+                    />
+                </SimpleTooltip>
             ))}
     </div>
 );
@@ -177,17 +192,16 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
     const startTimestamp: number = spotify.timestamps.start; // Example start timestamp
     const endTimestamp: number = spotify.timestamps.end; // Example end timestamp
     const [songProgress, setSongProgress] = useState<string | undefined>();
-    const songDuration: string = moment(endTimestamp - startTimestamp).format(
-        "m:ss"
-    );
+    const songDuration: number = endTimestamp - startTimestamp;
 
     // Update the song progress every second
     useEffect(() => {
         const interval = setInterval(() => {
-            const songProgress: string = moment(
-                Date.now() - startTimestamp
-            ).format("m:ss");
-            setSongProgress(songProgress);
+            const songProgress = Date.now() - startTimestamp;
+            if (songProgress > songDuration) {
+                return;
+            }
+            setSongProgress(moment(songProgress).format("m:ss"));
         }, 1000);
         return () => clearInterval(interval);
     }, [startTimestamp]);
@@ -206,10 +220,14 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
 
                 {/* Track Info */}
                 <div className="flex flex-col text-sm">
-                    <h1 className="font-bold leading-none">{spotify.song}</h1>
-                    <h2 className="font-light opacity-70">{spotify.artist}</h2>
+                    <h1 className="font-bold leading-none">
+                        {truncateText(spotify.song, 24)}
+                    </h1>
+                    <h2 className="font-light opacity-70">
+                        {truncateText(spotify.artist.replace(";", ","), 26)}
+                    </h2>
                     <p className="text-xs font-light opacity-70">
-                        {songProgress} / {songDuration}
+                        {songProgress} / {moment(songDuration).format("m:ss")}
                     </p>
                 </div>
             </div>
