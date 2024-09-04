@@ -265,8 +265,9 @@ const GameActivity = ({ activity }: { activity: Activity }): ReactElement => {
         }, 1000);
         return () => clearInterval(interval);
     }, [startTimestamp]);
+
     return (
-        <div className="flex items-start">
+        <div className="relative flex items-start">
             <div className="flex gap-2 items-center">
                 {/* Artwork */}
                 <Image
@@ -290,7 +291,7 @@ const GameActivity = ({ activity }: { activity: Activity }): ReactElement => {
             </div>
 
             {/* Activity Progress & Logo */}
-            <div className="ml-auto flex gap-1 text-green-500/80">
+            <div className="absolute top-0 right-0 flex gap-1 text-green-500/80">
                 <p className="text-xs font-light">{activityProgress}</p>
                 <PuzzlePieceIcon width={18} height={18} />
             </div>
