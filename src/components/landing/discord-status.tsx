@@ -191,8 +191,8 @@ const Username = ({
 
 const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
     const trackUrl: string = `https://open.spotify.com/track/${spotify.track_id}`;
-    const startTimestamp: number = spotify.timestamps.start; // Example start timestamp
-    const endTimestamp: number = spotify.timestamps.end; // Example end timestamp
+    const startTimestamp: number = spotify.timestamps.start;
+    const endTimestamp: number = spotify.timestamps.end;
     const [songProgress, setSongProgress] = useState<string | undefined>();
     const songDuration: number = endTimestamp - startTimestamp;
 
@@ -250,31 +250,52 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
     );
 };
 
-const GameActivity = ({ activity }: { activity: Activity }): ReactElement => (
-    <div className="flex items-start">
-        <div className="flex gap-2 items-center">
-            {/* Artwork */}
-            <Image
-                className="rounded-lg"
-                src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets?.large_image || activity.assets?.small_image}.png?size=1024`}
-                alt={`Game artwork of ${activity.name}`}
-                width={54}
-                height={54}
-            />
+const GameActivity = ({ activity }: { activity: Activity }): ReactElement => {
+    const startTimestamp: number = activity.timestamps?.start || Date.now();
+    const [activityProgress, setActivityProgress] = useState<
+        string | undefined
+    >();
 
-            {/* Activity Info */}
-            <div className="flex flex-col text-sm">
-                <h1 className="font-bold leading-none">{activity.name}</h1>
-                <h2 className="font-light opacity-70">{activity.details}</h2>
-                <p className="text-xs font-light opacity-70">
-                    {activity.state}
-                </p>
+    // Update the activity progress every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActivityProgress(
+                moment(Date.now() - startTimestamp).format("h:m:ss")
+            );
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [startTimestamp]);
+    return (
+        <div className="flex items-start">
+            <div className="flex gap-2 items-center">
+                {/* Artwork */}
+                <Image
+                    className="rounded-lg"
+                    src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets?.large_image || activity.assets?.small_image}.png?size=1024`}
+                    alt={`Game artwork of ${activity.name}`}
+                    width={54}
+                    height={54}
+                />
+
+                {/* Activity Info */}
+                <div className="flex flex-col text-sm">
+                    <h1 className="font-bold leading-none">{activity.name}</h1>
+                    <h2 className="font-light opacity-70">
+                        {activity.details}
+                    </h2>
+                    <p className="text-xs font-light opacity-70">
+                        {activity.state}
+                    </p>
+                </div>
+            </div>
+
+            {/* Activity Progress & Logo */}
+            <div className="ml-auto flex gap-1 text-green-500/80">
+                <p className="text-xs font-light">{activityProgress}</p>
+                <PuzzlePieceIcon width={18} height={18} />
             </div>
         </div>
-
-        {/* Activity Logo */}
-        <PuzzlePieceIcon className="ml-auto" width={18} height={18} />
-    </div>
-);
+    );
+};
 
 export default DiscordStatus;
