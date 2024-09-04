@@ -88,7 +88,7 @@ const DiscordStatus = (): ReactElement | undefined => {
 
                 <div className="px-3 pt-1.5 py-2.5 flex flex-col">
                     <div className="ml-[5.65rem] flex items-start">
-                        {dcdnUser.bio && <Bio dcdnUser={dcdnUser} />}
+                        {dcdnUser.bio && <Bio bio={dcdnUser.bio} />}
                         <Badges dcdnUser={dcdnUser} />
                     </div>
                     <div className="mt-3">
@@ -153,10 +153,12 @@ const BannerAvatar = ({
     </div>
 );
 
-const Bio = ({ dcdnUser }: { dcdnUser: DCDNUser }): ReactElement => (
-    <div className="p-2 bg-zinc-950/65 text-sm rounded-xl">
-        {truncateText(dcdnUser.bio, 15)}
-    </div>
+const Bio = ({ bio }: { bio: string }): ReactElement => (
+    <SimpleTooltip content={bio}>
+        <div className="p-2 bg-zinc-950/65 text-sm rounded-xl">
+            {truncateText(bio, 15)}
+        </div>
+    </SimpleTooltip>
 );
 
 const Badges = ({ dcdnUser }: { dcdnUser: DCDNUser }): ReactElement => (
@@ -192,19 +194,20 @@ const Username = ({
 
 const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
     const trackUrl: string = `https://open.spotify.com/track/${spotify.track_id}`;
+    const trackArtist: string = spotify.artist.replace(";", ",");
     const startTimestamp: number = spotify.timestamps.start;
     const endTimestamp: number = spotify.timestamps.end;
-    const [songProgress, setSongProgress] = useState<string | undefined>();
-    const songDuration: number = endTimestamp - startTimestamp;
+    const [trackProgress, setTrackProgress] = useState<string | undefined>();
+    const trackDuration: number = endTimestamp - startTimestamp;
 
-    // Update the song progress every second
+    // Update the track progress every second
     useEffect(() => {
         const interval = setInterval(() => {
-            const songProgress = Date.now() - startTimestamp;
-            if (songProgress > songDuration) {
+            const trackProgress = Date.now() - startTimestamp;
+            if (trackProgress > trackDuration) {
                 return;
             }
-            setSongProgress(moment(songProgress).format("m:ss"));
+            setTrackProgress(moment(trackProgress).format("m:ss"));
         }, 1000);
         return () => clearInterval(interval);
     }, [startTimestamp]);
@@ -226,15 +229,19 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
                 {/* Track Info */}
                 <div className="flex flex-col text-sm">
                     <Link href={trackUrl} target="_blank">
-                        <h1 className="font-bold leading-none">
-                            {truncateText(spotify.song, 22)}
-                        </h1>
-                        <h2 className="font-light opacity-70">
-                            {truncateText(spotify.artist.replace(";", ","), 26)}
-                        </h2>
+                        <SimpleTooltip content={spotify.song}>
+                            <h1 className="font-bold leading-none">
+                                {truncateText(spotify.song, 22)}
+                            </h1>
+                        </SimpleTooltip>
+                        <SimpleTooltip content={trackArtist}>
+                            <h2 className="font-light opacity-70">
+                                {truncateText(trackArtist, 26)}
+                            </h2>
+                        </SimpleTooltip>
                     </Link>
                     <p className="text-xs font-light opacity-70">
-                        {songProgress} / {moment(songDuration).format("m:ss")}
+                        {trackProgress} / {moment(trackDuration).format("m:ss")}
                     </p>
                 </div>
             </div>
