@@ -13,6 +13,10 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
+				hostname: "i.scdn.co",
+			},
+			{
+				protocol: "https",
 				hostname: "bonfire.wtf",
 			},
 			{
