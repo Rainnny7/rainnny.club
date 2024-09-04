@@ -15,6 +15,7 @@ import { cn, truncateText } from "@/lib/utils";
 import moment from "moment";
 import { PuzzlePieceIcon } from "@heroicons/react/24/outline";
 import SimpleTooltip from "@/components/ui/simple-tooltip";
+import Link from "next/link";
 
 const statusColors = {
     online: "bg-green-500",
@@ -189,6 +190,7 @@ const Username = ({
 );
 
 const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
+    const trackUrl: string = `https://open.spotify.com/track/${spotify.track_id}`;
     const startTimestamp: number = spotify.timestamps.start; // Example start timestamp
     const endTimestamp: number = spotify.timestamps.end; // Example end timestamp
     const [songProgress, setSongProgress] = useState<string | undefined>();
@@ -210,22 +212,26 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
         <div className="flex items-start">
             <div className="flex gap-2 items-center">
                 {/* Artwork */}
-                <Image
-                    className="rounded-lg"
-                    src={spotify.album_art_url as string}
-                    alt={`Track artwork of ${spotify.song} by ${spotify.artist}`}
-                    width={54}
-                    height={54}
-                />
+                <Link href={trackUrl} target="_blank">
+                    <Image
+                        className="rounded-lg"
+                        src={spotify.album_art_url as string}
+                        alt={`Track artwork of ${spotify.song} by ${spotify.artist}`}
+                        width={54}
+                        height={54}
+                    />
+                </Link>
 
                 {/* Track Info */}
                 <div className="flex flex-col text-sm">
-                    <h1 className="font-bold leading-none">
-                        {truncateText(spotify.song, 24)}
-                    </h1>
-                    <h2 className="font-light opacity-70">
-                        {truncateText(spotify.artist.replace(";", ","), 26)}
-                    </h2>
+                    <Link href={trackUrl} target="_blank">
+                        <h1 className="font-bold leading-none">
+                            {truncateText(spotify.song, 24)}
+                        </h1>
+                        <h2 className="font-light opacity-70">
+                            {truncateText(spotify.artist.replace(";", ","), 26)}
+                        </h2>
+                    </Link>
                     <p className="text-xs font-light opacity-70">
                         {songProgress} / {moment(songDuration).format("m:ss")}
                     </p>
