@@ -79,7 +79,7 @@ const DiscordStatus = (): ReactElement | undefined => {
 
     return (
         <div className="flex justify-center select-none">
-            <div className="flex flex-col bg-zinc-900 rounded-xl">
+            <div className="flex flex-col bg-zinc-300 dark:bg-zinc-900 rounded-xl">
                 <BannerAvatar
                     discordData={discordData}
                     discordUser={discordUser}
@@ -96,7 +96,7 @@ const DiscordStatus = (): ReactElement | undefined => {
 
                         {/* Activity */}
                         {discordData.activities.length > 0 && (
-                            <div className="mt-2 p-2 bg-zinc-950/65 rounded-lg">
+                            <div className="mt-2 p-2 bg-zinc-100 dark:bg-zinc-950/65 rounded-lg">
                                 {discordData.activities[0].name !==
                                 "Spotify" ? (
                                     <GameActivity
@@ -129,7 +129,7 @@ const BannerAvatar = ({
 }): ReactElement => (
     <div className="relative pointer-events-none">
         <Image
-            className="border-2 border-zinc-900 rounded-t-xl"
+            className="border-2 border-zinc-300 dark:border-zinc-900 rounded-t-xl"
             src={`https://cdn.discordapp.com/banners/${discordUser.id}/${dcdnUser.banner}.webp?size=1024`}
             alt={`${discordUser.username}'s Banner`}
             width={300}
@@ -137,7 +137,7 @@ const BannerAvatar = ({
         />
         <div className="relative">
             <Image
-                className="absolute left-2 -bottom-12 border-[5px] border-zinc-900 rounded-full"
+                className="absolute left-2 -bottom-12 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full"
                 src={`https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.webp?size=1024`}
                 alt={`${discordUser.username}'s Avatar`}
                 width={96}
@@ -145,7 +145,7 @@ const BannerAvatar = ({
             />
             <div
                 className={cn(
-                    "absolute left-[4.5rem] -bottom-12 w-7 h-7 border-[5px] border-zinc-900 rounded-full",
+                    "absolute left-[4.5rem] -bottom-12 w-7 h-7 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full",
                     statusColors[discordData.discord_status]
                 )}
             />
@@ -155,7 +155,7 @@ const BannerAvatar = ({
 
 const Bio = ({ bio }: { bio: string }): ReactElement => (
     <SimpleTooltip content={bio}>
-        <div className="p-2 bg-zinc-950/65 text-sm rounded-xl">
+        <div className="p-2 bg-zinc-100 dark:bg-zinc-950/65 text-sm rounded-xl">
             {truncateText(bio, 15)}
         </div>
     </SimpleTooltip>
