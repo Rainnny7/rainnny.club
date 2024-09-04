@@ -38,7 +38,7 @@ const Navigation = (): ReactElement => {
         undefined
     );
     return (
-        <div className="flex flex-col">
+        <div className="h-[20rem] flex flex-col">
             {/* Selection Buttons */}
             <div className="flex gap-3 sm:gap-6 justify-center transition-all transform-gpu">
                 {items.map((item, index) => {
@@ -64,7 +64,7 @@ const Navigation = (): ReactElement => {
             </div>
 
             {/* Selected Content */}
-            <BlurFade className="mt-5" delay={1.85} inView>
+            <BlurFade className="mt-6" delay={1.95} inView>
                 {selected ? (
                     <BlurFade
                         key={selected.name}

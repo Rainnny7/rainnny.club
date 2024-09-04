@@ -86,7 +86,7 @@ const DiscordStatus = (): ReactElement | undefined => {
                     dcdnUser={dcdnUser}
                 />
 
-                <div className="px-3.5 pt-1.5 py-2.5 flex flex-col">
+                <div className="px-3 pt-1.5 py-2.5 flex flex-col">
                     <div className="ml-[5.65rem] flex items-start">
                         {dcdnUser.bio && <Bio dcdnUser={dcdnUser} />}
                         <Badges dcdnUser={dcdnUser} />
@@ -226,7 +226,7 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
                 <div className="flex flex-col text-sm">
                     <Link href={trackUrl} target="_blank">
                         <h1 className="font-bold leading-none">
-                            {truncateText(spotify.song, 24)}
+                            {truncateText(spotify.song, 22)}
                         </h1>
                         <h2 className="font-light opacity-70">
                             {truncateText(spotify.artist.replace(";", ","), 26)}
