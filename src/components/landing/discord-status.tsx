@@ -127,7 +127,7 @@ const BannerAvatar = ({
     discordUser: DiscordUser;
     dcdnUser: DCDNUser;
 }): ReactElement => (
-    <div className="relative">
+    <div className="relative pointer-events-none">
         <Image
             className="border-2 border-zinc-900 rounded-t-xl"
             src={`https://cdn.discordapp.com/banners/${discordUser.id}/${dcdnUser.banner}.webp?size=1024`}
@@ -170,6 +170,7 @@ const Badges = ({ dcdnUser }: { dcdnUser: DCDNUser }): ReactElement => (
                         alt="Discord Profile Badge"
                         width={22}
                         height={22}
+                        draggable={false}
                     />
                 </SimpleTooltip>
             ))}
@@ -240,7 +241,7 @@ const SpotifyActivity = ({ spotify }: { spotify: Spotify }): ReactElement => {
 
             {/* Spotify Logo */}
             <Image
-                className="ml-auto"
+                className="ml-auto pointer-events-none"
                 src="https://cdn.rainnny.club/97JxTtnlhSun.png"
                 alt="Spotify Logo"
                 width={18}
@@ -271,7 +272,7 @@ const GameActivity = ({ activity }: { activity: Activity }): ReactElement => {
             <div className="flex gap-2 items-center">
                 {/* Artwork */}
                 <Image
-                    className="rounded-lg"
+                    className="rounded-lg pointer-events-none"
                     src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets?.large_image || activity.assets?.small_image}.png?size=1024`}
                     alt={`Game artwork of ${activity.name}`}
                     width={54}
