@@ -14,6 +14,18 @@ export const metadata: Metadata = {
     title: "RainnnyCLUB",
     description:
         "My name is Braydon and I am a self-taught software engineer living in Canada.",
+    openGraph: {
+        images: [
+            {
+                url: "/me.png",
+                width: 128,
+                height: 128,
+            },
+        ],
+    },
+    twitter: {
+        card: "summary",
+    },
 };
 export const viewport: Viewport = {
     themeColor: "#5555FF",
