@@ -33,7 +33,7 @@ const Navbar = (): ReactElement => (
 
 const Branding = (): ReactElement => (
     <Link
-        className="flex gap-3 items-center hover:opacity-75 cursor-default select-none transition-all transform-gpu"
+        className="flex gap-3 items-center hover:opacity-75 select-none transition-all transform-gpu"
         href="/"
     >
         <Image
@@ -92,7 +92,7 @@ const UsefulLinksContent = (): ReactElement => (
     <div className="w-[15.5rem] p-3 flex flex-wrap gap-5">
         {/* Git */}
         <Link href="https://git.rainnny.club" target="_blank">
-            <Button className="gap-3 cursor-default" variant="ghost">
+            <Button className="gap-3" variant="ghost">
                 <CodeBracketIcon width={24} height={24} />
                 <span>Gitea</span>
             </Button>
@@ -100,7 +100,7 @@ const UsefulLinksContent = (): ReactElement => (
 
         {/* Wiki */}
         <Link href="https://docs.rainnny.club" target="_blank">
-            <Button className="gap-3 cursor-default" variant="ghost">
+            <Button className="gap-3" variant="ghost">
                 <BookOpenIcon width={24} height={24} />
                 <span>Wiki</span>
             </Button>
@@ -108,7 +108,7 @@ const UsefulLinksContent = (): ReactElement => (
 
         {/* Status Page */}
         <Link href="https://status.rainnny.club" target="_blank">
-            <Button className="gap-3 cursor-default" variant="ghost">
+            <Button className="gap-3" variant="ghost">
                 <SignalIcon width={24} height={24} />
                 <span>Status</span>
             </Button>

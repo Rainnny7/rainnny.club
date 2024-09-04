@@ -74,7 +74,7 @@ const MyWork = (): ReactElement => {
                         target="_blank"
                     >
                         <MagicCard
-                            className="w-[15rem] lg:w-[25rem] p-3.5 cursor-default opacity-95"
+                            className="w-[15rem] lg:w-[25rem] p-3.5 opacity-95"
                             gradientColor={
                                 theme === "dark" ? "#262626" : "#D9D9D9"
                             }

@@ -19,7 +19,9 @@ const LandingPage = (): ReactElement => (
             <BlurFade className="my-7" delay={1.25} inView>
                 <Navigation />
             </BlurFade>
-            <DiscordStatus />
+            <BlurFade className="my-7" delay={1.85} inView>
+                <DiscordStatus />
+            </BlurFade>
         </div>
     </main>
 );

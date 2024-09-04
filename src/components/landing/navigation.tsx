@@ -46,7 +46,7 @@ const Navigation = (): ReactElement => {
                         <BlurFade key={index} delay={0.9 + 0.3 * index} inView>
                             <Button
                                 className={cn(
-                                    "px-3 sm:px-4 py-6 gap-2 shadow-sm bg-white/75 dark:bg-zinc-800/75 rounded-xl cursor-default hover:opacity-75 transition-all transform-gpu",
+                                    "px-3 sm:px-4 py-6 gap-2 shadow-sm bg-white/75 dark:bg-zinc-800/75 rounded-xl hover:opacity-75 transition-all transform-gpu",
                                     active && "opacity-70"
                                 )}
                                 variant="ghost"

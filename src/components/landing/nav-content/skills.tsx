@@ -121,7 +121,7 @@ const Skills = (): ReactElement => (
         {skillset.map((skill, index) => (
             <Link
                 key={index}
-                className="cursor-default hover:opacity-75 transition-all transform-gpu"
+                className="hover:opacity-75 transition-all transform-gpu"
                 href={skill.link}
                 target="_blank"
             >

@@ -12,7 +12,7 @@ const ThemeSwitcher = (): ReactElement => {
     const isLight = theme === "light";
     return (
         <Button
-            className="relative px-5 py-1.5 flex items-center cursor-default hover:opacity-85"
+            className="relative px-5 py-1.5 flex items-center hover:opacity-85"
             variant="ghost"
             onClick={() => setTheme(isLight ? "dark" : "light")}
         >
