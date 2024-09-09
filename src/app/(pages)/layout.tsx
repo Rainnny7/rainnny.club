@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "../globals.css";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { NextFont } from "next/dist/compiled/@next/font";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter: NextFont = Inter({ subsets: ["latin"] });
 
 /**
  * The metadata for this app.
@@ -37,10 +39,10 @@ export const viewport: Viewport = {
 const RootLayout = ({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>): ReactElement => (
     <html lang="en">
-        <body className={inter.className}>
+        <body className={cn(inter.className, "antialiased")}>
             <ThemeProvider
                 attribute="class"
                 defaultTheme="dark"

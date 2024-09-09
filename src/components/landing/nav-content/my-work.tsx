@@ -20,12 +20,12 @@ const projects: Project[] = [
         startDate: moment([2024, 7, 29]),
     },
     {
-        name: "WildNetwork",
+        name: "Tether",
         description:
-            "WildNetwork is a Minecraft server that contains multiple gamemodes, one of which is Prison, which is the most popular. I first joined the server as a Developer where I would work behind the scenes to create new features, now I&apos;m currently working as a System Administrator.",
-        icon: "https://cdn.rainnny.club/x6m1QENM9gZz.png",
-        link: "https://discord.gg/WildPrison",
-        startDate: moment([2020, 7, 1]),
+            "An API designed to provide real-time access to a user's Discord data.",
+        icon: "https://cdn.rainnny.club/tether.png",
+        link: "https://usetether.rest/user/504147739131641857",
+        startDate: moment([2024, 8, 8]),
     },
     {
         name: "Bonfire",
@@ -34,6 +34,14 @@ const projects: Project[] = [
         icon: "https://bonfire.wtf/media/logo.png",
         link: "https://bonfire.wtf",
         startDate: moment([2024, 3, 30]),
+    },
+    {
+        name: "WildNetwork",
+        description:
+            "WildNetwork is a Minecraft server that contains multiple gamemodes, one of which is Prison, which is the most popular. I first joined the server as a Developer where I would work behind the scenes to create new features, now I&apos;m currently working as a System Administrator.",
+        icon: "https://cdn.rainnny.club/x6m1QENM9gZz.png",
+        link: "https://discord.gg/WildPrison",
+        startDate: moment([2020, 7, 1]),
     },
     {
         name: "Lucity",
