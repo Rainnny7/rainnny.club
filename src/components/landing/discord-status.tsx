@@ -1,7 +1,12 @@
 "use client";
 
 import { ReactElement, useEffect, useState } from "react";
-import { DiscordUser, SpotifyActivity, useTetherWS } from "use-tether";
+import {
+    DiscordUser,
+    SpotifyActivity,
+    UserBadge,
+    useTetherWS,
+} from "use-tether";
 import Image from "next/image";
 import { cn, truncateText } from "@/lib/utils";
 import SimpleTooltip from "@/components/ui/simple-tooltip";
@@ -15,31 +20,6 @@ const statusColors = {
     OFFLINE: "bg-zinc-500",
 };
 
-const userBadges = {
-    // Nitro
-    "https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png":
-        {
-            name: "Nitro Subscriber",
-            predicate: (discordUser: DiscordUser) => true, // TODO: Add Nitro predicate
-        },
-
-    // Early Supporter
-    "https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png":
-        {
-            name: "Early Supporter",
-            predicate: (discordUser: DiscordUser) =>
-                discordUser.flags.list.includes("EARLY_SUPPORTER"),
-        },
-
-    // Active Developer
-    "https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png":
-        {
-            name: "Active Developer",
-            predicate: (discordUser: DiscordUser) =>
-                discordUser.flags.list.includes("ACTIVE_DEVELOPER"),
-        },
-};
-
 const DiscordStatus = (): ReactElement | undefined => {
     const discordUser: DiscordUser | undefined =
         useTetherWS("504147739131641857");
@@ -49,14 +29,14 @@ const DiscordStatus = (): ReactElement | undefined => {
     return (
         <div className="flex justify-center select-none">
             <div className="flex flex-col bg-zinc-300 dark:bg-zinc-900 rounded-xl">
-                <BannerAvatar user={discordUser} />
+                <BannerAvatar discordUser={discordUser} />
 
                 <div className="px-3 pt-1.5 py-2.5 flex flex-col">
                     <div className="ml-[5.65rem] flex items-start">
-                        <Bio bio="7th ward" /> {/* TODO: Add bio */}
+                        {discordUser.bio && <Bio bio={discordUser.bio} />}
                         <Badges discordUser={discordUser} />
                     </div>
-                    <div className="mt-3">
+                    <div className={discordUser.banner ? "mt-3" : "mt-6"}>
                         <Username discordUser={discordUser} />
 
                         {/* Activity */}
@@ -74,34 +54,47 @@ const DiscordStatus = (): ReactElement | undefined => {
     );
 };
 
-const BannerAvatar = ({ user }: { user: DiscordUser }): ReactElement => (
-    <div className="relative pointer-events-none">
-        {user.banner && (
-            <Image
-                className="border-2 border-zinc-300 dark:border-zinc-900 rounded-t-xl"
-                src={user.banner.url}
-                alt={`${user.username}'s Banner`}
-                width={300}
-                height={300}
-            />
-        )}
-        <div className="relative">
-            <Image
-                className="absolute left-2 -bottom-12 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full"
-                src={user.avatar.url}
-                alt={`${user.username}'s Avatar`}
-                width={96}
-                height={96}
-            />
-            <div
-                className={cn(
-                    "absolute left-[4.5rem] -bottom-12 w-7 h-7 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full",
-                    statusColors[user.onlineStatus]
-                )}
-            />
+const BannerAvatar = ({
+    discordUser,
+}: {
+    discordUser: DiscordUser;
+}): ReactElement => {
+    const bannerClasses =
+        "border-2 border-zinc-300 dark:border-zinc-900 rounded-t-xl";
+    return (
+        <div className="relative pointer-events-none">
+            {discordUser.banner ? (
+                <Image
+                    className={bannerClasses}
+                    src={discordUser.banner.url}
+                    alt={`${discordUser.username}'s Banner`}
+                    width={300}
+                    height={300}
+                />
+            ) : (
+                <div
+                    className={cn("w-[300px] h-[107px]", bannerClasses)}
+                    style={{ background: discordUser.bannerColor }}
+                />
+            )}
+            <div className="relative">
+                <Image
+                    className="absolute left-2 -bottom-12 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full"
+                    src={discordUser.avatar.url}
+                    alt={`${discordUser.username}'s Avatar`}
+                    width={96}
+                    height={96}
+                />
+                <div
+                    className={cn(
+                        "absolute left-[4.5rem] -bottom-12 w-7 h-7 border-[5px] border-zinc-300 dark:border-zinc-900 rounded-full",
+                        statusColors[discordUser.onlineStatus]
+                    )}
+                />
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 const Bio = ({ bio }: { bio: string }): ReactElement => (
     <SimpleTooltip content={bio}>
@@ -116,20 +109,23 @@ const Badges = ({
 }: {
     discordUser: DiscordUser;
 }): ReactElement => (
-    <div className="ml-auto flex gap-1">
-        {Object.entries(userBadges)
-            .filter(([_, badge]) => badge.predicate(discordUser))
-            .map(([badgeIcon, badge], index) => (
-                <SimpleTooltip key={index} content={badge.name}>
-                    <Image
-                        src={badgeIcon}
-                        alt="Discord Profile Badge"
-                        width={22}
-                        height={22}
-                        draggable={false}
-                    />
-                </SimpleTooltip>
-            ))}
+    <div
+        className={cn(
+            "ml-auto flex flex-wrap gap-1 justify-end",
+            discordUser.badges.length > 4 && "max-w-[4.75rem]"
+        )}
+    >
+        {discordUser.badges.map((badge: UserBadge, index: number) => (
+            <SimpleTooltip key={index} content={badge.description}>
+                <Image
+                    src={badge.icon.url}
+                    alt="Discord Profile Badge"
+                    width={22}
+                    height={22}
+                    draggable={false}
+                />
+            </SimpleTooltip>
+        ))}
     </div>
 );
 
