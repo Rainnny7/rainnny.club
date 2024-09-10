@@ -26,7 +26,7 @@
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "use-tether": "^1.0.2"
+    "use-tether": "^1.0.4"
   },
   "devDependencies": {
     "typescript": "^5",
