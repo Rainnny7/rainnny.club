@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactElement, useEffect, useState } from "react";
-import { DiscordUser, SpotifyActivity, useTetherWS } from "usetether";
+import { DiscordUser, SpotifyActivity, useTetherWS } from "use-tether";
 import Image from "next/image";
 import { cn, truncateText } from "@/lib/utils";
 import SimpleTooltip from "@/components/ui/simple-tooltip";
@@ -167,7 +167,7 @@ const SpotifyActivityContent = ({
             setTrackProgress(moment(trackProgress).format("m:ss"));
         }, 1000);
         return () => clearInterval(interval);
-    }, [startTimestamp]);
+    }, [startTimestamp, trackDuration]);
 
     return (
         <div className="flex items-start">
