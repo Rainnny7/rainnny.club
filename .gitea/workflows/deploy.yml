@@ -2,7 +2,7 @@ name: Deploy Site
 
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
     paths-ignore:
       - README.md
       - LICENSE
@@ -12,8 +12,8 @@ jobs:
   docker:
     strategy:
       matrix:
-        arch: ["ubuntu-latest"]
-        git-version: ["2.44.0"]
+        arch: [ "ubuntu-latest" ]
+        git-version: [ "2.44.0" ]
     runs-on: ${{ matrix.arch }}
 
     # Steps to run
