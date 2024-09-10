@@ -112,7 +112,7 @@ const Badges = ({
     <div
         className={cn(
             "ml-auto flex flex-wrap gap-1 justify-end",
-            discordUser.badges.length > 4 && "max-w-[4.75rem]"
+            discordUser.badges.length > 4 && "max-w-[6.5rem]"
         )}
     >
         {discordUser.badges.map((badge: UserBadge, index: number) => (
