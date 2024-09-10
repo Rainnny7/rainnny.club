@@ -36,7 +36,12 @@ const DiscordStatus = (): ReactElement | undefined => {
                         {discordUser.bio && <Bio bio={discordUser.bio} />}
                         <Badges discordUser={discordUser} />
                     </div>
-                    <div className={discordUser.banner ? "mt-3" : "mt-6"}>
+                    <div
+                        className={cn(
+                            discordUser.badges.length < 5 &&
+                                (discordUser.banner ? "mt-3" : "mt-6")
+                        )}
+                    >
                         <Username discordUser={discordUser} />
 
                         {/* Activity */}
