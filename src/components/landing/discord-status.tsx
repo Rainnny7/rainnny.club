@@ -104,7 +104,7 @@ const BannerAvatar = ({
 const Bio = ({ bio }: { bio: string }): ReactElement => (
     <SimpleTooltip content={bio}>
         <div className="p-2 bg-zinc-100 dark:bg-zinc-950/65 text-sm rounded-xl">
-            {truncateText(bio, 15)}
+            {truncateText(bio, 10)}
         </div>
     </SimpleTooltip>
 );
