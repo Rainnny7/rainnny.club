@@ -8,7 +8,6 @@ import Link from "next/link";
 import { ReactElement } from "react";
 import Project from "@/types/project";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Image from "next/image";
 import { truncateText } from "@/lib/utils";
 import SimpleTooltip from "@/components/ui/simple-tooltip";
 
@@ -27,6 +26,14 @@ const projects: Project[] = [
         icon: "https://cdn.rainnny.club/tether.png",
         link: "https://usetether.rest/user/504147739131641857",
         startDate: moment([2024, 8, 8]),
+    },
+    {
+        name: "Pulse App",
+        description:
+            "A lightweight service monitoring solution for tracking the availability of whatever service your heart desires!",
+        icon: "https://pulseapp.cc/media/logo.png",
+        link: "https://pulseapp.cc",
+        startDate: moment([2024, 9, 22]),
     },
     {
         name: "Bonfire",
@@ -96,7 +103,7 @@ const MyWork = (): ReactElement => {
                                 {/* Icon, Name & Years Active */}
                                 <div className="flex flex-col lg:flex-row gap-0 md:gap-3 justify-center lg:justify-start lg:items-center">
                                     <div className="flex gap-3">
-                                        <Image
+                                        <img
                                             className="rounded-full"
                                             src={project.icon}
                                             alt={`The ${project.name} Project Icon`}

@@ -41,7 +41,7 @@ const RootLayout = ({
 }: Readonly<{
     children: ReactNode;
 }>): ReactElement => (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
         <body className={cn(inter.className, "antialiased")}>
             <ThemeProvider
                 attribute="class"

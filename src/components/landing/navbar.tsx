@@ -54,35 +54,28 @@ const Links = (): ReactElement => (
             <NavigationMenuItem>
                 <NavigationMenuTrigger>Useful Links</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                    <NavigationMenuLink>
-                        <UsefulLinksContent />
-                    </NavigationMenuLink>
+                    <UsefulLinksContent />
                 </NavigationMenuContent>
             </NavigationMenuItem>
 
             {/* Donate */}
             <NavigationMenuItem>
-                <Link
+                <NavigationMenuLink
+                    className={cn(
+                        navigationMenuTriggerStyle(),
+                        "gap-2 select-none"
+                    )}
                     href="https://buymeacoffee.com/Rainnny7"
-                    legacyBehavior
-                    passHref
+                    target="_blank"
                 >
-                    <NavigationMenuLink
-                        className={cn(
-                            navigationMenuTriggerStyle(),
-                            "gap-2 select-none"
-                        )}
-                        target="_blank"
-                    >
-                        <span className="hidden sm:flex">Buy me a Coffee</span>
-                        <span className="sm:hidden">Donate</span>
-                        <HeartIcon
-                            className="text-red-500 animate-pulse"
-                            width={20}
-                            height={20}
-                        />
-                    </NavigationMenuLink>
-                </Link>
+                    <span className="hidden sm:flex">Buy me a Coffee</span>
+                    <span className="sm:hidden">Donate</span>
+                    <HeartIcon
+                        className="text-red-500 animate-pulse"
+                        width={20}
+                        height={20}
+                    />
+                </NavigationMenuLink>
             </NavigationMenuItem>
         </NavigationMenuList>
     </NavigationMenu>

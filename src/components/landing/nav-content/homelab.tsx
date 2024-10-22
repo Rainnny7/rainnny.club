@@ -12,7 +12,7 @@ const HomelabContent = (): ReactElement => (
             <b>UPS:</b> 1350VA
         </li>
         <li className="my-2.5" />
-        <li>
+        <ul>
             <b>Proxmox Node-01:</b>
             <li>
                 - <b>Motherboard:</b> Prime B550-PLUS
@@ -26,7 +26,7 @@ const HomelabContent = (): ReactElement => (
             <li>
                 - <b>Storage:</b> 8TB (x2 4TB, x1 4TB Parity) Unraid Array
             </li>
-        </li>
+        </ul>
     </ul>
 );
 export default HomelabContent;

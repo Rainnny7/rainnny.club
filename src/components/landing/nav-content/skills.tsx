@@ -12,6 +12,11 @@ const skillset: Skill[] = [
         link: "https://www.java.com",
     },
     {
+        name: "TypeScript",
+        icon: "https://img.icons8.com/fluent/2x/typescript.png",
+        link: "https://www.typescriptlang.org",
+    },
+    {
         name: "JavaScript",
         icon: "https://img.icons8.com/fluent/2x/javascript.png",
         link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
@@ -71,11 +76,6 @@ const skillset: Skill[] = [
         name: "Figma",
         icon: "https://img.icons8.com/fluent/2x/figma.png",
         link: "https://www.figma.com",
-    },
-    {
-        name: "Postman",
-        icon: "https://img.icons8.com/dusk/2x/postman-api.png",
-        link: "https://www.postman.com",
     },
 
     // Frameworks & Libraries
