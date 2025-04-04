@@ -23,7 +23,7 @@
     "next-themes": "^0.3.0",
     "react": "^19.0.0-rc-45804af1-20241021",
     "react-dom": "^19.0.0-rc-45804af1-20241021",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "use-tether": "^1.0.4"
